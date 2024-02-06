@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APLICATIVOS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #00FF00, #007BFF);
+            color: white;
+            min-height: 100vh;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        .app {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px auto;
+            max-width: 300px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            transition: opacity 0.5s;
+        }
+        
+        .search-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        #searchInput {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding-right: 35px; /* EspaÃ§o para a lupa */
+        }
+
+        #searchInput:focus {
+            outline: none;
+        }
+        
+#searchButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    left: 2px;
+    top: 7px; /* Baixa a lupa em 2px */
+}
+
+#searchButton img {
+    width: 25px;
+    height: 25px;
+}
+
+        .download-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+
+        .download-button:active {
+            transform: scale(0.95);
+        }
+
+        .circular-logo {
+            border-radius: 50%;
+            max-width: 100px;
+            height: auto;
+            margin-top: 10px;
+            animation: random-shadow 1s infinite alternate;
+        }
+
+        @keyframes random-shadow {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Pesquisar aplicativos">
+        <button id="searchButton" onclick="searchApps()">
+            <img src="https://i.imgur.com/1uiSSJ5.png" alt="Lupa">
+        </button>
+    </div>
+
+    <h1>APLICATIVOS LIMA NET</h1>
+    
+    <div class="app">
+        <img class="circular-logo" src="/apps/LIMA.png" alt="Logo 1">
+        <h2>LIMA-NET 5G</h2>
+        <p>Tamanho: 7,5 MB</p>
+        <p>Data de Postagem: 02/02/2024</p>
+        <a class="download-button" href="/apps/LIMA5G.apk" download>Baixar</a>
+    </div>
+
+    <div class="app">
+        <img class="circular-logo" src="/apps/LIMA.png" alt="Logo 2">
+        <h2>LIMA-NET DT</h2>
+        <p>Tamanho: 29,9 MB</p>
+        <p>Data de Postagem: 02/02/2024</p>
+        <a class="download-button" href="/apps/LIMADT.apk" download>Baixar</a>
+    </div>
+
+    <script>
+        window.addEventListener("scroll", function() {
+            const elements = document.querySelectorAll(".app");
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (elementTop < windowHeight) {
+                    element.style.opacity = "1";
+                }
+            });
+        });
+
+        function searchApps() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const appContainers = document.querySelectorAll(".app");
+
+            appContainers.forEach(appContainer => {
+                const appName = appContainer.querySelector("h2").innerText.toLowerCase();
+
+                if (appName.includes(searchInput)) {
+                    appContainer.style.display = "block";
+                } else {
+                    appContainer.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
